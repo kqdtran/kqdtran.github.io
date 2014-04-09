@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html lang="en" class="no-js ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html lang="en" class="no-js ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html lang="en" class="no-js ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js' lang='en'>
+  <!--<![endif]-->
+<head>
+    
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    <title>Setting up a Virtual Machine for IPython/IJulia Notebook</title>
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1, user-scalable=no">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="../assets/stylesheets/unsemantic-grid-responsive.css?v=aa81479df4" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/style.css?v=aa81479df4" rel='stylesheet'>
+    <link href="../assets/stylesheets/ir_black.css?v=aa81479df4" rel='stylesheet'>
+
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js'></script>
+
+    
+    <meta name="generator" content="Ghost 0.4" />
+<link rel="alternate" type="application/rss+xml" title="khoa&#39;s internet hideout" href="../rss/index.html">
+<link rel="canonical" href="index.html" />
+</head>
+<body itemscope itemtype="http://schema.org/Blog" class="post-template">
+    
+    <aside id="sidebar" class="sidebar">
+      <ul>
+  <li><a href="../index.html"><i class="fa fa-home"></i> Home</a></li>
+  <li><a href="../about-me/index.html"><i class="fa fa-user"></i> About</a></li>
+  <li><a href="../content/images/Khoa_Tran_resume.pdf" target="_blank"><i class="fa fa-user"></i> Resume</a></li>
+  <li><a href="../projects/index.html"><i class="fa fa-coffee"></i> Projects</a></li>
+  <li><a href="../notes/index.html"><i class="fa fa-list"></i> Notes</a></li>
+</ul>
+
+    </aside>
+    
+    <div class="page-wrapper">
+        <nav id="navbar" class="navbar">
+         <button class="menu-btn" id="openMenu"><i class="fa fa-bars"></i></button>
+        </nav>
+
+            
+
+
+
+<section id="post-container" role='main' class="grid-container main-container">
+
+    <article class="post" id="" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+
+        
+        
+        <header>
+            <h2 class="post-title" itemprop="name headline">Setting up a Virtual Machine for IPython/IJulia Notebook</h2>
+        </header>
+        <section class="post-text" itemprop="articleBody text">
+            <p>I recently wrote up the instructions for setting up a Virtual Machine for doing the labs in CS70: Discrete Math and Probability Theory, and I thought other people not in the class may find this useful as well.</p>
+
+<p>Here's a <a href="../content/images/course/cs70/setup.pdf">pdf copy</a> of all the instructions below for those who want a handy reference.</p>
+
+<h2 id="installationinstructionsforsaasbookvmusers">Installation Instructions (for saasbook VM users)</h2>
+
+<p>(borrowed heavily from the <a href="http://amplab.github.io/datascience-sp14/setup.html">installation instructions</a> in CS194-16: Introduction to Data Science)</p>
+
+<ol>
+<li>Follow <a href="http://beta.saasbook.info/bookware-vm-instructions">the instructions available here</a> to install VirtualBox, and the virtual machine image. The virtual machine image already includes most of the software necessary to run the code. We will install extra packages below. <br />
+<em>Note: If you have troubles installing Virtualbox on your Operating System and/or booting up the virtual machine, Google will be your best friend. We only provide official support after you have been able to get past the login screen and are inside the virtual machine</em></li>
+<li>Start up the machine. Enter <code>saasbook</code> as the password.  </li>
+<li>Launch a terminal. (Third icon in the launcher on the left.)  </li>
+<li>Grab a copy of <code>setup.bash</code><a href="../content/images/course/cs70/setup.bash">here</a> or from <a href="https://www.dropbox.com/s/4qrbkw7joebygxb/setup.bash">this Dropbox link</a>, and save it on the virtual machine. You can either do this via Firefox, or in the terminal: <code>wget https://www.dropbox.com/s/4qrbkw7joebygxb/setup.bash</code>  </li>
+<li>Run <code>sudo bash setup.bash</code>. Make sure you are in the same directory as <code>setup.bash</code> before executing this command. Enter the same password again to install lots of packages.  </li>
+<li>Grab a coffee or something - it will take a few minutes to build/install these components. Also if you see warnings etc. on the screen, don’t worry, that is expected.  </li>
+<li><code>STOP</code>: If you are only interested in working in Python, you have now installed everything you need. If you are interested in using Julia, skip the rest of this section and move on to the Julia section.  </li>
+<li>To test that everything works correctly, run <code>ipython notebook</code>. </li>
+</ol>
+
+<p>In the browser window that pops up, create a new notebook, and enter the following in the first cell:</p>
+
+<pre><code>%pylab inline   
+x = np.random.randn(5000)    
+plt.hist(x, 50)
+</code></pre>
+
+<p>You should see a beautiful normal distribution in the output, as seen below. To exit, simply hit <code>Ctrl+C</code>, <code>y</code>, and close Firefox.</p>
+
+<p><img src="../content/images/2014/Feb/normal.png" alt="normal" /></p>
+
+<h2 id="juliaijulia">Julia/IJulia</h2>
+
+<p>Continue on if you are interested in working in Julia and IJulia.</p>
+
+<ol>
+<li>Type <code>julia</code> in the command line to start the Julia REPL, and install IJulia with: <code>Pkg.add("IJulia")</code>.  </li>
+<li>Continue the installation with <code>Pkg.add("PyPlot")</code> to install PyPlot, which is a plotting package for Julia based on Python's Matplotlib.  </li>
+<li>If the commands above returns an error, you may need to run <code>Pkg.update()</code>, then retry it. To exit the Julia REPL, hit Ctrl+D  </li>
+<li><p>To start the IJulia interface, run <code>ipython notebook --profile julia</code>. In the browser window that pops up, create a new notebook, and enter the following in the first cell:      </p>
+
+<pre><code>using PyPlot     
+x = randn(5000)    
+plt.hist(x, 50);
+</code></pre></li>
+</ol>
+
+<p>You should see a beautiful normal distribution in the output, just like the picture above.</p>
+
+<h2 id="texandnbconvert">TeX and nbconvert</h2>
+
+<ol>
+<li><p>If you want to use the <code>nbconvert</code> utility to convert your IPython/IJulia Notebook to pdf format, you will need to install some flavor of TeX. One way to do so is via the <code>texlive</code> package. Be aware that the following command will download about 600 MB of software, which expands to over 1 GB. In other words, it will take a <code>very</code> long time to download and configure.</p>
+
+<pre><code>sudo apt-get install texlive-latex-extra
+</code></pre></li>
+</ol>
+
+<p>You can always right click from the web browser and choose to print the notebook as PDF, which is much easier, though the formatting may be messed up. You can also look into other convert options <a href="http://ipython.org/ipython-doc/rel-1.0.0/interactive/nbconvert.html">here</a></p>
+
+<h2 id="dontlikeworkinginthevm">Don't like working in the VM?</h2>
+
+<p>(<em>Credit goes to Yan Zhao, Victor Lymar, and Sridatta Thatipamala - current CS194-16 students</em>)</p>
+
+<p>Good news - you can still work on your local machine using your own browser! Follow the instructions below.</p>
+
+<h3 id="settingupssh">Setting up SSH</h3>
+
+<ol>
+<li>Select your VM inside VirtualBox Manager.  </li>
+<li>Go to <em>Settings > Network > Advanced > Port Forwarding</em>.  </li>
+<li>Add a new rule with "<code>name =&gt; ssh, protocol =&gt; TCP, Host Port =&gt; 3022, Guest Port =&gt; 22</code>", and everything else BLANK.  </li>
+<li>INSIDE your VM, install the ssh server with <code>sudo apt-get install openssh-server</code>  </li>
+<li>SSH Command: <code>ssh -p 3022 saasbook@127.0.0.1</code>. <br />
+SCP command: <code>scp -P 3022 saasbook@127.0.0.1:~/VM_DIRECTORY_NAME LOCAL_DIRECTORY_NAME</code>  </li>
+<li>If you didn't change, the password is <code>saasbook</code>  </li>
+<li>Optionally, you can look into SSH-ing without a password. There are many tutorials on the web, one of which can be found <a href="http://www.linuxproblem.org/art_9.html">here</a>.</li>
+</ol>
+
+<h3 id="accessingthenotebookfromhostsystem">Accessing the notebook from host system</h3>
+
+<ol>
+<li>Add another rule to Port Forwarding with guest port as 8888, and host port as 8888. <br />
+To help double check that you get everything correctly, here's a screenshot of what you suppose to see after adding the above rule</li>
+</ol>
+
+<p><img src="../content/images/2014/Feb/port.png" alt="normal" /></p>
+
+<ol>
+<li>To start the notebook, run <code>ipython notebook --no-browser --ip='0.0.0.0'</code> instead since the guest system won't expose <code>127.0.0.1</code> to other machine in the LAN.  </li>
+<li>Open <code>localhost:8888</code> on your host browser, you will see the notebook page. Congrats, you can now work in your local browser!</li>
+</ol>
+
+<h3 id="headlessvm">Headless VM</h3>
+
+<p>Now you may wonder, if I can do all of the above tricks, why do I need to open a window of the guest system. The answer is you don't have to :)</p>
+
+<ol>
+<li><p>Run the following command in terminal to start a headless VM: </p>
+
+<pre><code>VBoxManage startvm "name_of_vm" --type headless
+</code></pre></li>
+</ol>
+
+<p>where <code>name_of_vm</code> should be the name of the virtual machine as in VirtualBox Manager</p>
+
+<ol>
+<li>To turn off the vm, just run <code>sudo poweroff</code> in the ssh session.</li>
+</ol>
+
+<h3 id="sshconfigfile">ssh config file</h3>
+
+<p>If the ssh command is too long to type, put everything in a config file.</p>
+
+<ol>
+<li>The config file is <code>~/.ssh/config</code>, if it is not there, just create one.  </li>
+<li><p>Put the ssh host in the config file in the following format, notice the blank before User, Hostname, port is a tab:</p>
+
+<pre><code>Host vm70    
+    User saasbook    
+    Hostname 127.0.0.1    
+    Port 3022
+</code></pre></li>
+<li><p>Just type <code>ssh vm70</code> to ssh into the vm.</p></li>
+</ol>
+
+<p>Hope some of you may find this helpful for doing their data science work! If you spot an error, send me an email (preferred), comment here, or <a href="https://github.com/kqdtran/bash/issues">raise an issue on Github</a>.</p>
+
+<h2 id="update04052013">Update 04/05/2013</h2>
+
+<p>As of today, the CS 70 course staff has generously offered to host the VM with every package preinstalled on the <a href="http://inst.eecs.berkeley.edu/~cs70/sp14/vm/eecs70.ova">official course website</a>. Just download the image, import it into VirtualBox, and enjoy!</p>
+        </section>
+      <footer class="clearfix">
+          <ul>
+              <li>
+                  <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="blogged-by-img" src="http://www.gravatar.com/avatar/4e28688062e41b686616897a02128a01?d=404" alt=""><span class="blogged-by"><a href="khoatran@berkeley.edu" rel="author" itemprop="url name">Khoa Tran</a></span>
+</span>
+
+              </li>
+             <span class="actions">
+                <li class="notes"><a href="index.html"><i class="fa fa-book"></i> Read <span class="hide-on-mobile">more</span></a></li>
+                <li class="notes">&bull;</li>
+                <li class="notes"><i class="fa fa-clock-o"></i> <span class="hide-on-mobile" itemprop="datePublished">09 April 2014</span> <span class="hide-on-desktop hide-on-tablet">09/04/2014</span></li>
+              </span>
+          </ul>
+            <ul class="actions tags">
+                <span class="notes">
+                     
+                </span
+            </ul>
+      </footer>
+
+        
+
+    </article>
+
+</section>
+
+<!--<article class="post" id="disquss_comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'kqdtran'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+</article>
+-->
+
+
+  </div>
+
+<footer class="grid-container">
+    <div class="site-footer">
+      <div class="grid-100 mobile-grid-100" style="text-align:center;">
+           <section class="copyright">All content copyright <a href="../index.html">khoa&#x27;s internet hideout</a> &copy; 2014 &bull; All rights reserved.</section>
+           <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://ghost.org">Ghost</a></section>
+      </div>
+  </div>
+</footer>
+
+    
+    <script src="../public/jquery.js?v=aa81479df4"></script>
+
+    
+    <!--<script src="/assets/javascripts/backstretch.js?v=aa81479df4"></script>
+    <script src="/assets/javascripts/highlight.pack.js?v=aa81479df4"></script>-->
+    <script src="../assets/javascripts/plugins.js?v=aa81479df4"></script>
+    <script src="../assets/javascripts/script.js?v=aa81479df4"></script>
+
+</body>
+</html>

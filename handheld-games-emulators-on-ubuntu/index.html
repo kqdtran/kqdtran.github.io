@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html lang="en" class="no-js ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html lang="en" class="no-js ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html lang="en" class="no-js ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js' lang='en'>
+  <!--<![endif]-->
+<head>
+    
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    <title>Handheld games emulators on Ubuntu</title>
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1, user-scalable=no">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="../assets/stylesheets/unsemantic-grid-responsive.css?v=aa81479df4" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/style.css?v=aa81479df4" rel='stylesheet'>
+    <link href="../assets/stylesheets/ir_black.css?v=aa81479df4" rel='stylesheet'>
+
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js'></script>
+
+    
+    <meta name="generator" content="Ghost 0.4" />
+<link rel="alternate" type="application/rss+xml" title="khoa&#39;s internet hideout" href="../rss/index.html">
+<link rel="canonical" href="index.html" />
+</head>
+<body itemscope itemtype="http://schema.org/Blog" class="post-template">
+    
+    <aside id="sidebar" class="sidebar">
+      <ul>
+  <li><a href="../index.html"><i class="fa fa-home"></i> Home</a></li>
+  <li><a href="../about-me/index.html"><i class="fa fa-user"></i> About</a></li>
+  <li><a href="../content/images/Khoa_Tran_resume.pdf" target="_blank"><i class="fa fa-user"></i> Resume</a></li>
+  <li><a href="../projects/index.html"><i class="fa fa-coffee"></i> Projects</a></li>
+  <li><a href="../notes/index.html"><i class="fa fa-list"></i> Notes</a></li>
+</ul>
+
+    </aside>
+    
+    <div class="page-wrapper">
+        <nav id="navbar" class="navbar">
+         <button class="menu-btn" id="openMenu"><i class="fa fa-bars"></i></button>
+        </nav>
+
+            
+
+
+
+<section id="post-container" role='main' class="grid-container main-container">
+
+    <article class="post" id="" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+
+        
+        
+        <header>
+            <h2 class="post-title" itemprop="name headline">Handheld games emulators on Ubuntu</h2>
+        </header>
+        <section class="post-text" itemprop="articleBody text">
+            <p>Have you ever missed those classic PS1 titles like <a href="http://www.ign.com/games/castlevania-symphony-of-the-night/ps-336">Castlevania: Symphony of the Night</a>? Or felt nostalgic for your childhood, when you trained your Pokemon to be the very best, like no one ever was?    </p>
+
+<p>I know I have. But I run Ubuntu, and most of the emulators found online are .exe files.</p>
+
+<p>You can run <a href="https://apps.ubuntu.com/cat/applications/wine1.4-amd64/">Wine</a>, but I wouldn't recommend it, unless the emulator is really lightweight.</p>
+
+<p>It turns out that there are certain apps available in the Ubuntu Apps Repository that would achieve the same result as their Windows's counterpart. I was bored during <a href="https://en.wikipedia.org/wiki/Dead_week">dead week</a> when most people camped in the library 24/7, so I searched around for some simple ways to relax and destress myself. It all started with a simple package search</p>
+
+<pre><code>sudo apt-cache search psx
+</code></pre>
+
+<p>, which yield   </p>
+
+<pre><code>pcsxr - Sony PlayStation emulator
+pcsxr-dbg - Sony PlayStation emulator (debug)
+</code></pre>
+
+<p>. (You know what to do next, right? :p). If you'd like to install from source, <a href="https://pcsxr.codeplex.com/documentation">this link</a> provides a great start. Here's Megaman X5 played on PCSXR:</p>
+
+<p><img src="../content/images/2013/May/pcsxr.png" alt="pcsxr" /></p>
+
+<p>Next up is Gameboy Advance. There are many options available, most of which can be found via Ubuntu Software Center. My personal favorite is VBA-M, which happens to belong in an <a href="http://www.ubuntuupdates.org/package/getdeb_games/raring/games/getdeb/vbam">external package</a> (so doing apt-cache search vbam wouldn't return anything, yet).</p>
+
+<pre><code>wget -q -O- http://archive.getdeb.net/getdeb-archive.key | sudo apt-key add -
+sudo gedit /etc/apt/sources.list  
+</code></pre>
+
+<p>You need <code>sudo</code> in the second command because things in <code>/etc</code> are configuration files and are read-only by default. Go to the end and paste in this line    </p>
+
+<pre><code>deb http://archive.getdeb.net/ubuntu/ precise-getdeb games 
+</code></pre>
+
+<p>At this point you're done. Run <code>sudo apt-get update</code> to let ubuntu know that you've added this external package and fetch it, then <code>sudo apt-get install vbam</code> to finish everything. Weirdly enough, the command to start vbam is <code>gvbam</code>, which takes me a while to figure out the 'g' part. Pokemon Emerald executed perfectly on VBA-M:</p>
+
+<p><img src="../content/images/2013/May/gba.png" alt="pcsxr" /></p>
+
+<p>Finally comes the DS. Installation is as simple as the first one, with just one single command</p>
+
+<pre><code>sudo apt-get install desmume
+</code></pre>
+
+<p>. And here's Megaman Star Force 3: Red Joker tested on Ubuntu's Desmume</p>
+
+<p><img src="../content/images/2013/May/nds.png" alt="pcsxr" /></p>
+
+<p>. Awesome, isn't it?</p>
+        </section>
+      <footer class="clearfix">
+          <ul>
+              <li>
+                  <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="blogged-by-img" src="http://www.gravatar.com/avatar/4e28688062e41b686616897a02128a01?d=404" alt=""><span class="blogged-by"><a href="khoatran@berkeley.edu" rel="author" itemprop="url name">Khoa Tran</a></span>
+</span>
+
+              </li>
+             <span class="actions">
+                <li class="notes"><a href="index.html"><i class="fa fa-book"></i> Read <span class="hide-on-mobile">more</span></a></li>
+                <li class="notes">&bull;</li>
+                <li class="notes"><i class="fa fa-clock-o"></i> <span class="hide-on-mobile" itemprop="datePublished">11 May 2013</span> <span class="hide-on-desktop hide-on-tablet">11/05/2013</span></li>
+              </span>
+          </ul>
+            <ul class="actions tags">
+                <span class="notes">
+                     
+                </span
+            </ul>
+      </footer>
+
+        
+
+    </article>
+
+</section>
+
+<!--<article class="post" id="disquss_comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'kqdtran'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+</article>
+-->
+
+
+  </div>
+
+<footer class="grid-container">
+    <div class="site-footer">
+      <div class="grid-100 mobile-grid-100" style="text-align:center;">
+           <section class="copyright">All content copyright <a href="../index.html">khoa&#x27;s internet hideout</a> &copy; 2014 &bull; All rights reserved.</section>
+           <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://ghost.org">Ghost</a></section>
+      </div>
+  </div>
+</footer>
+
+    
+    <script src="../public/jquery.js?v=aa81479df4"></script>
+
+    
+    <!--<script src="/assets/javascripts/backstretch.js?v=aa81479df4"></script>
+    <script src="/assets/javascripts/highlight.pack.js?v=aa81479df4"></script>-->
+    <script src="../assets/javascripts/plugins.js?v=aa81479df4"></script>
+    <script src="../assets/javascripts/script.js?v=aa81479df4"></script>
+
+</body>
+</html>

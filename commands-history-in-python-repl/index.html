@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html lang="en" class="no-js ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html lang="en" class="no-js ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html lang="en" class="no-js ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js' lang='en'>
+  <!--<![endif]-->
+<head>
+    
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    <title>Commands History in Python REPL</title>
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1, user-scalable=no">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="../assets/stylesheets/unsemantic-grid-responsive.css?v=aa81479df4" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/style.css?v=aa81479df4" rel='stylesheet'>
+    <link href="../assets/stylesheets/ir_black.css?v=aa81479df4" rel='stylesheet'>
+
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js'></script>
+
+    
+    <meta name="generator" content="Ghost 0.4" />
+<link rel="alternate" type="application/rss+xml" title="khoa&#39;s internet hideout" href="../rss/index.html">
+<link rel="canonical" href="index.html" />
+</head>
+<body itemscope itemtype="http://schema.org/Blog" class="post-template">
+    
+    <aside id="sidebar" class="sidebar">
+      <ul>
+  <li><a href="../index.html"><i class="fa fa-home"></i> Home</a></li>
+  <li><a href="../about-me/index.html"><i class="fa fa-user"></i> About</a></li>
+  <li><a href="../content/images/Khoa_Tran_resume.pdf" target="_blank"><i class="fa fa-user"></i> Resume</a></li>
+  <li><a href="../projects/index.html"><i class="fa fa-coffee"></i> Projects</a></li>
+  <li><a href="../notes/index.html"><i class="fa fa-list"></i> Notes</a></li>
+</ul>
+
+    </aside>
+    
+    <div class="page-wrapper">
+        <nav id="navbar" class="navbar">
+         <button class="menu-btn" id="openMenu"><i class="fa fa-bars"></i></button>
+        </nav>
+
+            
+
+
+
+<section id="post-container" role='main' class="grid-container main-container">
+
+    <article class="post" id="" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+
+        
+        
+        <header>
+            <h2 class="post-title" itemprop="name headline">Commands History in Python REPL</h2>
+        </header>
+        <section class="post-text" itemprop="articleBody text">
+            <p>During the first month of my internship, I learned and worked exclusively with Scala, Simple Build Tool (SBT), and Play 2 pretty much everyday. Last weekend, I decided to crack open <a href="http://www.amazon.com/Python-Data-Analysis-Wes-McKinney/dp/1449319793/ref=sr_1_1?ie=UTF8&amp;qid=1372893011&amp;sr=8-1&amp;keywords=python+for+data+analysis">Python for Data Analysis</a> to learn a few new tricks with Python and data analysis using its awesome libraries. One small thing I noticed about the difference between the Scala's REPL and Python's is that the former remembers commands history from previous sessions, much like a BASH shell. Python by default clears all the history after you <code>exit()</code> or <code>Ctrl+C</code> out of the REPL, and doesn't have this simple nice feature (or at least this was the case on my machine...)</p>
+
+<p>So after digging into Google and StackOverflow, I found a nice and simple solution <a href="http://docs.python.org/2/tutorial/interactive.html?highlight=atexit">in the documentation</a> itself... <code>cd</code> back to your main directory and create a file called <code>.pystartup</code> (don't forget the dot '.') with the following content:</p>
+
+<pre><code># Add auto-completion and a stored history file of commands to your Python
+# interactive interpreter. Requires Python 2.0+, readline. Autocomplete is
+# bound to the Esc key by default (you can change it - see readline docs).
+#   
+# Store the file in ~/.pystartup, and set an environment variable to point
+# to it:  "export PYTHONSTARTUP=~/.pystartup" in bash.
+
+import atexit
+import os
+import readline
+import rlcompleter
+
+historyPath = os.path.expanduser("~/.pyhistory")
+
+# Tab completion
+readline.parse_and_bind('tab: complete')
+
+def save_history(historyPath=historyPath):
+    import readline
+    readline.write_history_file(historyPath)
+
+if os.path.exists(historyPath):
+    readline.read_history_file(historyPath)
+
+atexit.register(save_history)
+del os, atexit, readline, rlcompleter, save_history, historyPath 
+{% endhighlight %}
+</code></pre>
+
+<p>Then go to your <code>.bashrc</code> file, and put down this line (or just type it in your shell prompt)</p>
+
+<pre><code>export PYTHONSTARTUP=/home/your_user_name/.pystartup
+</code></pre>
+
+<p>Now you can cycle between commands using the up/down keys, and pressing Tab will give you auto-completion, much like a Bash shell. Pretty cool, huh?</p>
+
+<p>If you like interactive shell, <a href="http://ipython.org/install.html">IPython</a> does a wonderful job. It's certainly a great asset if you're into data visualization and scientific computing with Python, which by the way, is... on my TODO list with the aforementioned book... :D </p>
+        </section>
+      <footer class="clearfix">
+          <ul>
+              <li>
+                  <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="blogged-by-img" src="http://www.gravatar.com/avatar/4e28688062e41b686616897a02128a01?d=404" alt=""><span class="blogged-by"><a href="khoatran@berkeley.edu" rel="author" itemprop="url name">Khoa Tran</a></span>
+</span>
+
+              </li>
+             <span class="actions">
+                <li class="notes"><a href="index.html"><i class="fa fa-book"></i> Read <span class="hide-on-mobile">more</span></a></li>
+                <li class="notes">&bull;</li>
+                <li class="notes"><i class="fa fa-clock-o"></i> <span class="hide-on-mobile" itemprop="datePublished">28 June 2013</span> <span class="hide-on-desktop hide-on-tablet">28/06/2013</span></li>
+              </span>
+          </ul>
+            <ul class="actions tags">
+                <span class="notes">
+                     
+                </span
+            </ul>
+      </footer>
+
+        
+
+    </article>
+
+</section>
+
+<!--<article class="post" id="disquss_comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'kqdtran'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+</article>
+-->
+
+
+  </div>
+
+<footer class="grid-container">
+    <div class="site-footer">
+      <div class="grid-100 mobile-grid-100" style="text-align:center;">
+           <section class="copyright">All content copyright <a href="../index.html">khoa&#x27;s internet hideout</a> &copy; 2014 &bull; All rights reserved.</section>
+           <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://ghost.org">Ghost</a></section>
+      </div>
+  </div>
+</footer>
+
+    
+    <script src="../public/jquery.js?v=aa81479df4"></script>
+
+    
+    <!--<script src="/assets/javascripts/backstretch.js?v=aa81479df4"></script>
+    <script src="/assets/javascripts/highlight.pack.js?v=aa81479df4"></script>-->
+    <script src="../assets/javascripts/plugins.js?v=aa81479df4"></script>
+    <script src="../assets/javascripts/script.js?v=aa81479df4"></script>
+
+</body>
+</html>
