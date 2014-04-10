@@ -157,7 +157,7 @@ samp {
 pre {
   white-space: pre;
   white-space: pre-wrap;
-  word-wrap: break-word;
+  word-wrap: normal;
 }
 
 /* line 210, ../../../../../../../../../Applications/Fire.app/Contents/Resources/lib/ruby/compass_extensions/compass-h5bp-0.1.1/stylesheets/h5bp/_normalize.scss */
@@ -564,9 +564,8 @@ body .post {
   font-family: 'Source Sans Pro', sans-serif;
   color: #333332;
   border-bottom: 1px solid #f2f2f0;
-  -ms-word-break: break-all;
-  word-break: break-all;
-  word-break: break-word;
+  -ms-word-break: normal;
+  word-break: normal;
 }
 /* line 208, ../sass/partials/_page.scss */
 body .post hr {
