@@ -1,0 +1,360 @@
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>khoa's internet hideout</title><description>Software Engineer @ Autodesk. Cal '15 -- Go Bears! Data Enthusiast. Loves tennis, martial arts, water sports, and salsa.</description><link>http://127.0.0.1:2368/</link><generator>Ghost v0.4.2</generator><lastBuildDate>Thu, 16 Apr 2015 05:51:31 GMT</lastBuildDate><atom:link href="http://127.0.0.1:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Cal Transfer Shadow Day Spring 2014</title><description>&lt;p&gt;Last weekend, I got the opportunity to volunteer as a Group Leader for the biannual Cal Transfer Shadow Day. Two years ago when I first transferred, I received a great deal of transfer tips and advice from many awesome Cal students, most of whom have graduated. Now I'm almost at the end of my undergraduate years, and I want to give back to the transfer community that has helped me so much over the years. As Matthew McConaughey said in his Oscar acceptance speech, "it's a scientific fact that gratitude reciprocates".&lt;/p&gt;
+
+&lt;p&gt;For those of you who attended the event - THANK YOU! I had a blast, and I hope you did too, as well as learned a thing or two about Cal and what is it like to study Computer Science here. If you missed the handouts I gave out at the end of the day, I have them included below.&lt;/p&gt;
+
+&lt;p&gt;As always, it's a real pleasure to meet some prospective transfer students, and if you are one and have any question, feel free to ping me. Go Bears!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href='http://127.0.0.1:2368/content/images/course/shadow.pdf' &gt;Shadow Day Handout&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href='http://127.0.0.1:2368/content/images/course/cs_transfer_advice.pdf' &gt;Tips and Advice for CS Transfer Students&lt;/a&gt;&lt;/p&gt;</description><link>http://127.0.0.1:2368/cal-transfer-shadow-day-spring-2014/</link><guid isPermaLink="false">961c6902-562b-4a91-bc9e-f167bc8ae803</guid><dc:creator>Khoa Tran</dc:creator><pubDate>Wed, 09 Apr 2014 07:45:13 GMT</pubDate></item><item><title>Setting up a Virtual Machine for IPython/IJulia Notebook</title><description>&lt;p&gt;I recently wrote up the instructions for setting up a Virtual Machine for doing the labs in CS70: Discrete Math and Probability Theory, and I thought other people not in the class may find this useful as well.&lt;/p&gt;
+
+&lt;p&gt;Here's a &lt;a href='http://127.0.0.1:2368/content/images/course/cs70/setup.pdf' &gt;pdf copy&lt;/a&gt; of all the instructions below for those who want a handy reference.&lt;/p&gt;
+
+&lt;h2 id="installationinstructionsforsaasbookvmusers"&gt;Installation Instructions (for saasbook VM users)&lt;/h2&gt;
+
+&lt;p&gt;(borrowed heavily from the &lt;a href='http://amplab.github.io/datascience-sp14/setup.html' &gt;installation instructions&lt;/a&gt; in CS194-16: Introduction to Data Science)&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Follow &lt;a href='http://beta.saasbook.info/bookware-vm-instructions' &gt;the instructions available here&lt;/a&gt; to install VirtualBox, and the virtual machine image. The virtual machine image already includes most of the software necessary to run the code. We will install extra packages below. &lt;br /&gt;
+&lt;em&gt;Note: If you have troubles installing Virtualbox on your Operating System and/or booting up the virtual machine, Google will be your best friend. We only provide official support after you have been able to get past the login screen and are inside the virtual machine&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Start up the machine. Enter &lt;code&gt;saasbook&lt;/code&gt; as the password.  &lt;/li&gt;
+&lt;li&gt;Launch a terminal. (Third icon in the launcher on the left.)  &lt;/li&gt;
+&lt;li&gt;Grab a copy of &lt;code&gt;setup.bash&lt;/code&gt;&lt;a href='http://127.0.0.1:2368/content/images/course/cs70/setup.bash' &gt;here&lt;/a&gt; or from &lt;a href='https://www.dropbox.com/s/4qrbkw7joebygxb/setup.bash' &gt;this Dropbox link&lt;/a&gt;, and save it on the virtual machine. You can either do this via Firefox, or in the terminal: &lt;code&gt;wget https://www.dropbox.com/s/4qrbkw7joebygxb/setup.bash&lt;/code&gt;  &lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;sudo bash setup.bash&lt;/code&gt;. Make sure you are in the same directory as &lt;code&gt;setup.bash&lt;/code&gt; before executing this command. Enter the same password again to install lots of packages.  &lt;/li&gt;
+&lt;li&gt;Grab a coffee or something - it will take a few minutes to build/install these components. Also if you see warnings etc. on the screen, don’t worry, that is expected.  &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;STOP&lt;/code&gt;: If you are only interested in working in Python, you have now installed everything you need. If you are interested in using Julia, skip the rest of this section and move on to the Julia section.  &lt;/li&gt;
+&lt;li&gt;To test that everything works correctly, run &lt;code&gt;ipython notebook&lt;/code&gt;. &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;In the browser window that pops up, create a new notebook, and enter the following in the first cell:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;%pylab inline   
+x = np.random.randn(5000)    
+plt.hist(x, 50)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should see a beautiful normal distribution in the output, as seen below. To exit, simply hit &lt;code&gt;Ctrl+C&lt;/code&gt;, &lt;code&gt;y&lt;/code&gt;, and close Firefox.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src='http://127.0.0.1:2368/content/images/2014/Feb/normal.png'  alt="normal" /&gt;&lt;/p&gt;
+
+&lt;h2 id="juliaijulia"&gt;Julia/IJulia&lt;/h2&gt;
+
+&lt;p&gt;Continue on if you are interested in working in Julia and IJulia.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Type &lt;code&gt;julia&lt;/code&gt; in the command line to start the Julia REPL, and install IJulia with: &lt;code&gt;Pkg.add("IJulia")&lt;/code&gt;.  &lt;/li&gt;
+&lt;li&gt;Continue the installation with &lt;code&gt;Pkg.add("PyPlot")&lt;/code&gt; to install PyPlot, which is a plotting package for Julia based on Python's Matplotlib.  &lt;/li&gt;
+&lt;li&gt;If the commands above returns an error, you may need to run &lt;code&gt;Pkg.update()&lt;/code&gt;, then retry it. To exit the Julia REPL, hit Ctrl+D  &lt;/li&gt;
+&lt;li&gt;&lt;p&gt;To start the IJulia interface, run &lt;code&gt;ipython notebook --profile julia&lt;/code&gt;. In the browser window that pops up, create a new notebook, and enter the following in the first cell:      &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;using PyPlot     
+x = randn(5000)    
+plt.hist(x, 50);
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;You should see a beautiful normal distribution in the output, just like the picture above.&lt;/p&gt;
+
+&lt;h2 id="texandnbconvert"&gt;TeX and nbconvert&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;If you want to use the &lt;code&gt;nbconvert&lt;/code&gt; utility to convert your IPython/IJulia Notebook to pdf format, you will need to install some flavor of TeX. One way to do so is via the &lt;code&gt;texlive&lt;/code&gt; package. Be aware that the following command will download about 600 MB of software, which expands to over 1 GB. In other words, it will take a &lt;code&gt;very&lt;/code&gt; long time to download and configure.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get install texlive-latex-extra
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;You can always right click from the web browser and choose to print the notebook as PDF, which is much easier, though the formatting may be messed up. You can also look into other convert options &lt;a href='http://ipython.org/ipython-doc/rel-1.0.0/interactive/nbconvert.html' &gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="dontlikeworkinginthevm"&gt;Don't like working in the VM?&lt;/h2&gt;
+
+&lt;p&gt;(&lt;em&gt;Credit goes to Yan Zhao, Victor Lymar, and Sridatta Thatipamala - current CS194-16 students&lt;/em&gt;)&lt;/p&gt;
+
+&lt;p&gt;Good news - you can still work on your local machine using your own browser! Follow the instructions below.&lt;/p&gt;
+
+&lt;h3 id="settingupssh"&gt;Setting up SSH&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Select your VM inside VirtualBox Manager.  &lt;/li&gt;
+&lt;li&gt;Go to &lt;em&gt;Settings &gt; Network &gt; Advanced &gt; Port Forwarding&lt;/em&gt;.  &lt;/li&gt;
+&lt;li&gt;Add a new rule with "&lt;code&gt;name =&amp;gt; ssh, protocol =&amp;gt; TCP, Host Port =&amp;gt; 3022, Guest Port =&amp;gt; 22&lt;/code&gt;", and everything else BLANK.  &lt;/li&gt;
+&lt;li&gt;INSIDE your VM, install the ssh server with &lt;code&gt;sudo apt-get install openssh-server&lt;/code&gt;  &lt;/li&gt;
+&lt;li&gt;SSH Command: &lt;code&gt;ssh -p 3022 saasbook@127.0.0.1&lt;/code&gt;. &lt;br /&gt;
+SCP command: &lt;code&gt;scp -P 3022 saasbook@127.0.0.1:~/VM_DIRECTORY_NAME LOCAL_DIRECTORY_NAME&lt;/code&gt;  &lt;/li&gt;
+&lt;li&gt;If you didn't change, the password is &lt;code&gt;saasbook&lt;/code&gt;  &lt;/li&gt;
+&lt;li&gt;Optionally, you can look into SSH-ing without a password. There are many tutorials on the web, one of which can be found &lt;a href='http://www.linuxproblem.org/art_9.html' &gt;here&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id="accessingthenotebookfromhostsystem"&gt;Accessing the notebook from host system&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Add another rule to Port Forwarding with guest port as 8888, and host port as 8888. &lt;br /&gt;
+To help double check that you get everything correctly, here's a screenshot of what you suppose to see after adding the above rule&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src='http://127.0.0.1:2368/content/images/2014/Feb/port.png'  alt="normal" /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;To start the notebook, run &lt;code&gt;ipython notebook --no-browser --ip='0.0.0.0'&lt;/code&gt; instead since the guest system won't expose &lt;code&gt;127.0.0.1&lt;/code&gt; to other machine in the LAN.  &lt;/li&gt;
+&lt;li&gt;Open &lt;code&gt;localhost:8888&lt;/code&gt; on your host browser, you will see the notebook page. Congrats, you can now work in your local browser!&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id="headlessvm"&gt;Headless VM&lt;/h3&gt;
+
+&lt;p&gt;Now you may wonder, if I can do all of the above tricks, why do I need to open a window of the guest system. The answer is you don't have to :)&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Run the following command in terminal to start a headless VM: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;VBoxManage startvm "name_of_vm" --type headless
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;where &lt;code&gt;name_of_vm&lt;/code&gt; should be the name of the virtual machine as in VirtualBox Manager&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;To turn off the vm, just run &lt;code&gt;sudo poweroff&lt;/code&gt; in the ssh session.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id="sshconfigfile"&gt;ssh config file&lt;/h3&gt;
+
+&lt;p&gt;If the ssh command is too long to type, put everything in a config file.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;The config file is &lt;code&gt;~/.ssh/config&lt;/code&gt;, if it is not there, just create one.  &lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Put the ssh host in the config file in the following format, notice the blank before User, Hostname, port is a tab:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Host vm70    
+    User saasbook    
+    Hostname 127.0.0.1    
+    Port 3022
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Just type &lt;code&gt;ssh vm70&lt;/code&gt; to ssh into the vm.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Hope some of you may find this helpful for doing their data science work! If you spot an error, send me an email (preferred), comment here, or &lt;a href='https://github.com/kqdtran/bash/issues' &gt;raise an issue on Github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id="update04052013"&gt;Update 04/05/2013&lt;/h2&gt;
+
+&lt;p&gt;As of today, the CS 70 course staff has generously offered to host the VM with every package preinstalled on the &lt;a href='http://inst.eecs.berkeley.edu/' ~cs70/sp14/vm/eecs70.ova"&gt;official course website&lt;/a&gt;. Just download the image, import it into VirtualBox, and enjoy!&lt;/p&gt;</description><link>http://127.0.0.1:2368/setting-up-a-virtual-machine-for-ipythonijulia-notebook/</link><guid isPermaLink="false">b31f3e24-8b14-4e94-8008-254b5dccdf59</guid><dc:creator>Khoa Tran</dc:creator><pubDate>Fri, 14 Mar 2014 17:35:00 GMT</pubDate></item><item><title>So I heard you're an aspiring Golden Bear Data Scient-ish</title><description>&lt;p&gt;&lt;em&gt;This post is inspired by &lt;a href='https://www.quora.com/Harvard-College/What-classes-should-I-take-at-Harvard-if-I-want-to-become-a-data-scientist/answer/William-Chen-6' &gt;William Chen's post on Quora for Harvard&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Disclaimer&lt;/em&gt;: I've not taken all of these classes, and some is more of a hearsay. YMMV. This list is also not meant to be exhaustive.&lt;/p&gt;
+
+&lt;p&gt;So you're at Berkeley, and you want to do Data Science? Great! Here are some classes that you may find helpful to prepare for a career in Data Science.&lt;/p&gt;
+
+&lt;h3 id="computerscience"&gt;Computer Science&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CS 61A/B/C&lt;/strong&gt;: Structures &amp;amp; Interpretations of Computer Programs, Data Structures, Machine Structures   &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CS 170&lt;/strong&gt;: Algorithms  &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CS 188&lt;/strong&gt;: Artificial Intelligence &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CS 186 / IEOR 115 / Info 257&lt;/strong&gt;: Database&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CS 169&lt;/strong&gt;: Software Engineering (can be substituted by an internship)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;Comments&lt;/em&gt;: CS 61ABC are foundational for every CS students. I can't imagine graduating from Berkeley CS without CS 170. CS 188 introduces students to a variety of modern AI research topics, including search &amp;amp; heuristics, constraint satisfaction, reinforcement learning, graphical models, and machine learning. &lt;/p&gt;
+
+&lt;p&gt;I don't think one can do data science without a basic understanding of database and SQL commands. CS 186 or IEOR 115 teach students precisely that. The former goes deep into database construction/programming, while the latter is more of a survey of common database topics that is more suitable for non-CS majors.&lt;/p&gt;
+
+&lt;p&gt;CS 169 teaches the life-cycle of software development and allows students to work on a semester-long project. If you already had an internship, chances are you won't learn as much in this class, but I would still recommend doing it if you have an empty slot in your schedule.&lt;/p&gt;
+
+&lt;h3 id="probabilitystatistics"&gt;Probability &amp;amp; Statistics&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Stat 134&lt;/strong&gt;: Probability Theory (CS 70, CS 174, EE 126, or IEOR 172 may also suffice)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stat 135 / IEOR 165&lt;/strong&gt;: Statistics / Statistical Inference&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stat 151A&lt;/strong&gt;: Linear Modeling&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stat 152&lt;/strong&gt;: Survey Sampling&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stat 153&lt;/strong&gt;: Time Series Analysis&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;Comments&lt;/em&gt;: Stat 134 and 135 are crucial for any statistics work, including data science. There are many 150-series classes at Cal (most are meant to be taken after 134 and 135), but if you only have time for a couple, I would recommend the ones above. Again, YMMV.&lt;/p&gt;
+
+&lt;p&gt;If Stat 134 doesn't fit your schedule, any of the other four classes may also work. What's the differences among them? AFAIK, CS 70 also teaches Discrete Mathematics alongside Probability Theory for CS majors, but doesn't go very deep into the latter. CS 174, Randomized Algorithms and Discrete Probability, is an advanced course, and is usually best served after CS 170 (e.g. you will be doing Randomized Min Cut, Quick Select, etc. in the first couple weeks of class). IEOR 172 tends toward Operations Research applications. I don't have any personal experience with EE 126, though I've heard it's a notoriously difficult beast.&lt;/p&gt;
+
+&lt;p&gt;Unlike the lower division CS classes, don't worry about the lower division Stat classes. They are mostly for non-majors and/or students who haven't learned basic stats in high school. If you have completed a year of Calculus, it should be fine to jump straight to Stat 134.&lt;/p&gt;
+
+&lt;h3 id="dataanalysisdatamining"&gt;Data Analysis &amp;amp; Data Mining&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Stat 133 / Stat 243&lt;/strong&gt;: Concepts in Computing with Data / Statistical Computing&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stat 157&lt;/strong&gt;: Collaborative and Reproducible Data Science&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CS 194-16&lt;/strong&gt;: Data Science&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Info 290T-3&lt;/strong&gt;: Data Mining&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;Comments&lt;/em&gt;: Stat 133 is a gentle introduction to programming for statistics majors, using R. If you already have some nontrivial programming experience, it should be fine to skip it, since Stat 135 also teaches students R from scratch for the lab portion of the class.&lt;/p&gt;
+
+&lt;p&gt;Stat 157 is a new course that was first offered in Fall 2013. The initial run was quite rough, but I think the class will eventually become a valuable learning experience for undergrads in the near future. This class teaches students the good practice of reproducible research, which is very essential if your goal is to go to grad school.&lt;/p&gt;
+
+&lt;p&gt;CS 194-16 is also a new course (though it was previously offered in a different format by Cloudera's Founder and Chief Scientist, Jeff Hammerbacher). There's a cap on the enrollment for the class at the moment because the material is still being developed, but it should be fine for future semesters. You learn the nuts and bolts of data science in this class, from scraping and preparing data to mining them for patterns.&lt;/p&gt;
+
+&lt;p&gt;Finally, Info 290T is a fun and relaxing course that teaches you the basics of Data Mining, often taught by Yelp's Engineering Managers. The pace is very gentle, and students work on a collaborative final project that analyzes a dataset of their choice. The class doesn't go very deep into the theory behind many algorithms, however.&lt;/p&gt;
+
+&lt;h3 id="optimizationbadassmath"&gt;Optimization &amp;amp; Bad-Ass Math&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Math 110&lt;/strong&gt;: (Advanced) Linear Algebra&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;EE 127 / EE 227B&lt;/strong&gt;: Optimization / Advanced Optimization&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stat 150 / IEOR 161 / IEOR 263A&lt;/strong&gt;: Stochastic Processes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;Comments&lt;/em&gt;: Surprisingly (to me at least), Linear Algebra is everywhere in modern AI topics, from Machine Learning to Computer Graphics/Vision. Math 54, the lower division Linear Algebra &amp;amp; Differential Equations course, introduces students to basic concepts in Linear Algebra, and Math 110 extends upon those and teaches students many fundamental LA theorems, including the Spectral Theorem (which you will see a lot in analyzing Gaussian models) and Jordan Form. Upper division mathematics classes are notoriously mind-bending and difficult, but if you have time for just one, Math 110 is the one.&lt;/p&gt;
+
+&lt;p&gt;Optimization, which also borrows heavily from Linear Algebra (SVD, PCA, etc.), is also an essential class. This class is best taken in concurrent with a Machine Learning class, and there's some overlap between it and Math 110.&lt;/p&gt;
+
+&lt;p&gt;Stat 150 personally fries my brain. I wouldn't recommend doing it unless you have had advanced training in mathematics (e.g. Real and Complex Analysis). You will recite Markov Chain like the Multiplication Table coming out of this class. The course also touches on Markov Chain Monte Carlo (MCMC), which is an advanced sampling topic that is also taught (briefly) in CS 188 and CS 281A.&lt;/p&gt;
+
+&lt;h3 id="machinelearningstatisticallearning"&gt;Machine Learning &amp;amp; Statistical Learning&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CS 189 / Stat 154&lt;/strong&gt;: Machine Learning&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CS 281A / Stat 241A&lt;/strong&gt;: Statistical Learning Theory (Probabilistic Graphical Models)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CS 281B / Stat 241B&lt;/strong&gt;: Advanced Topics in Statistical Learning Theory&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Info 290-10&lt;/strong&gt;: Machine Learning in Education&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;Comments&lt;/em&gt;: If you can pick between CS 189/Stat 154, I would hands down go with the former. Both teach students the fundamentals of machine learning, and even though you might not be on the Big Data/Machine Learning bandwagon, chances are you will find yourself applying some ML concepts in the future. It's a must-take IMO.&lt;/p&gt;
+
+&lt;p&gt;CS 281A is a very theoretical beast (it's a graduate-level course, after all), and students are expected to be solid in Linear Algebra and Probability Theory from day one. You learn to apply concepts from these two topics on graphical models to analyze a variety of real-world probabilistic inference problems.&lt;/p&gt;
+
+&lt;h3 id="otherrelatedtopics"&gt;Other Related Topics&lt;/h3&gt;
+
+&lt;p&gt;There are many popular AI topics that share a lot in common with Data Science. Whether it's Text Mining or Computer Vision, you will likely find yourself working with a bunch of messy data and trying to analyze them using similar mathematical and statistical concepts. Again, this list of related topics is also inexhaustive.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CS 288 / Info 256&lt;/strong&gt;: Natural Language Processing&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CS 287&lt;/strong&gt;: Robotics&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CS 280&lt;/strong&gt;: Computer Vision&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CS 184 / CS 194-26&lt;/strong&gt;: Computer Graphics / Computational Photography&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Info 202&lt;/strong&gt;: Information Retrieval&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="finalwords"&gt;Final Words&lt;/h3&gt;
+
+&lt;p&gt;There are obviously a ton of other classes that are helpful for a career in Data Science, and the ones suggested above are not enough to complete either a CS or Stat degree. You are encouraged to take as many of the suggested classes as possible. In addition, any other upper division or graduate CS/Stat/Math classes will never hurt.&lt;/p&gt;
+
+&lt;p&gt;Beside classes, don't forget to hack on a personal project or two and analyze an interesting dataset of your choice. &lt;a href='https://www.kaggle.com/' &gt;Kaggle&lt;/a&gt; will be one of your best friends. There are tons of &lt;a href='http://www.quora.com/Data-Science/How-do-I-become-a-data-scientist' &gt;inspirational posts for a Data Science career on Quora&lt;/a&gt; and other websites, so I'm gonna stop here. Feel free to let me know if you have any suggestions to add to the list above. And Go Data Science Bears!&lt;/p&gt;</description><link>http://127.0.0.1:2368/so-i-heard-youre-an-aspiring-golden-bear-data-scient-ish/</link><guid isPermaLink="false">45b95bd9-21c9-4fc4-8d7f-e4924618cf6f</guid><category>Data Science, Berkeley, Courses, Quora</category><dc:creator>Khoa Tran</dc:creator><pubDate>Wed, 29 Jan 2014 19:25:00 GMT</pubDate></item><item><title>Commands History in Python REPL</title><description>&lt;p&gt;During the first month of my internship, I learned and worked exclusively with Scala, Simple Build Tool (SBT), and Play 2 pretty much everyday. Last weekend, I decided to crack open &lt;a href='http://www.amazon.com/Python-Data-Analysis-Wes-McKinney/dp/1449319793/ref=sr_1_1?ie=UTF8&amp;amp;qid=1372893011&amp;amp;sr=8-1&amp;amp;keywords=python+for+data+analysis' &gt;Python for Data Analysis&lt;/a&gt; to learn a few new tricks with Python and data analysis using its awesome libraries. One small thing I noticed about the difference between the Scala's REPL and Python's is that the former remembers commands history from previous sessions, much like a BASH shell. Python by default clears all the history after you &lt;code&gt;exit()&lt;/code&gt; or &lt;code&gt;Ctrl+C&lt;/code&gt; out of the REPL, and doesn't have this simple nice feature (or at least this was the case on my machine...)&lt;/p&gt;
+
+&lt;p&gt;So after digging into Google and StackOverflow, I found a nice and simple solution &lt;a href='http://docs.python.org/2/tutorial/interactive.html?highlight=atexit' &gt;in the documentation&lt;/a&gt; itself... &lt;code&gt;cd&lt;/code&gt; back to your main directory and create a file called &lt;code&gt;.pystartup&lt;/code&gt; (don't forget the dot '.') with the following content:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Add auto-completion and a stored history file of commands to your Python
+# interactive interpreter. Requires Python 2.0+, readline. Autocomplete is
+# bound to the Esc key by default (you can change it - see readline docs).
+#   
+# Store the file in ~/.pystartup, and set an environment variable to point
+# to it:  "export PYTHONSTARTUP=~/.pystartup" in bash.
+
+import atexit
+import os
+import readline
+import rlcompleter
+
+historyPath = os.path.expanduser("~/.pyhistory")
+
+# Tab completion
+readline.parse_and_bind('tab: complete')
+
+def save_history(historyPath=historyPath):
+    import readline
+    readline.write_history_file(historyPath)
+
+if os.path.exists(historyPath):
+    readline.read_history_file(historyPath)
+
+atexit.register(save_history)
+del os, atexit, readline, rlcompleter, save_history, historyPath 
+{% endhighlight %}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then go to your &lt;code&gt;.bashrc&lt;/code&gt; file, and put down this line (or just type it in your shell prompt)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export PYTHONSTARTUP=/home/your_user_name/.pystartup
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you can cycle between commands using the up/down keys, and pressing Tab will give you auto-completion, much like a Bash shell. Pretty cool, huh?&lt;/p&gt;
+
+&lt;p&gt;If you like interactive shell, &lt;a href='http://ipython.org/install.html' &gt;IPython&lt;/a&gt; does a wonderful job. It's certainly a great asset if you're into data visualization and scientific computing with Python, which by the way, is... on my TODO list with the aforementioned book... :D &lt;/p&gt;</description><link>http://127.0.0.1:2368/commands-history-in-python-repl/</link><guid isPermaLink="false">1d4544cf-cc77-480f-af04-edfcffeb8d1f</guid><dc:creator>Khoa Tran</dc:creator><pubDate>Fri, 28 Jun 2013 21:45:00 GMT</pubDate></item><item><title>Handheld games emulators on Ubuntu</title><description>&lt;p&gt;Have you ever missed those classic PS1 titles like &lt;a href='http://www.ign.com/games/castlevania-symphony-of-the-night/ps-336' &gt;Castlevania: Symphony of the Night&lt;/a&gt;? Or felt nostalgic for your childhood, when you trained your Pokemon to be the very best, like no one ever was?    &lt;/p&gt;
+
+&lt;p&gt;I know I have. But I run Ubuntu, and most of the emulators found online are .exe files.&lt;/p&gt;
+
+&lt;p&gt;You can run &lt;a href='https://apps.ubuntu.com/cat/applications/wine1.4-amd64/' &gt;Wine&lt;/a&gt;, but I wouldn't recommend it, unless the emulator is really lightweight.&lt;/p&gt;
+
+&lt;p&gt;It turns out that there are certain apps available in the Ubuntu Apps Repository that would achieve the same result as their Windows's counterpart. I was bored during &lt;a href='https://en.wikipedia.org/wiki/Dead_week' &gt;dead week&lt;/a&gt; when most people camped in the library 24/7, so I searched around for some simple ways to relax and destress myself. It all started with a simple package search&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-cache search psx
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;, which yield   &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pcsxr - Sony PlayStation emulator
+pcsxr-dbg - Sony PlayStation emulator (debug)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;. (You know what to do next, right? :p). If you'd like to install from source, &lt;a href='https://pcsxr.codeplex.com/documentation' &gt;this link&lt;/a&gt; provides a great start. Here's Megaman X5 played on PCSXR:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src='http://127.0.0.1:2368/content/images/2013/May/pcsxr.png'  alt="pcsxr" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next up is Gameboy Advance. There are many options available, most of which can be found via Ubuntu Software Center. My personal favorite is VBA-M, which happens to belong in an &lt;a href='http://www.ubuntuupdates.org/package/getdeb_games/raring/games/getdeb/vbam' &gt;external package&lt;/a&gt; (so doing apt-cache search vbam wouldn't return anything, yet).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;wget -q -O- http://archive.getdeb.net/getdeb-archive.key | sudo apt-key add -
+sudo gedit /etc/apt/sources.list  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You need &lt;code&gt;sudo&lt;/code&gt; in the second command because things in &lt;code&gt;/etc&lt;/code&gt; are configuration files and are read-only by default. Go to the end and paste in this line    &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;deb http://archive.getdeb.net/ubuntu/ precise-getdeb games 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;At this point you're done. Run &lt;code&gt;sudo apt-get update&lt;/code&gt; to let ubuntu know that you've added this external package and fetch it, then &lt;code&gt;sudo apt-get install vbam&lt;/code&gt; to finish everything. Weirdly enough, the command to start vbam is &lt;code&gt;gvbam&lt;/code&gt;, which takes me a while to figure out the 'g' part. Pokemon Emerald executed perfectly on VBA-M:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src='http://127.0.0.1:2368/content/images/2013/May/gba.png'  alt="pcsxr" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally comes the DS. Installation is as simple as the first one, with just one single command&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get install desmume
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;. And here's Megaman Star Force 3: Red Joker tested on Ubuntu's Desmume&lt;/p&gt;
+
+&lt;p&gt;&lt;img src='http://127.0.0.1:2368/content/images/2013/May/nds.png'  alt="pcsxr" /&gt;&lt;/p&gt;
+
+&lt;p&gt;. Awesome, isn't it?&lt;/p&gt;</description><link>http://127.0.0.1:2368/handheld-games-emulators-on-ubuntu/</link><guid isPermaLink="false">55d45fed-1328-4227-ba8b-c4418ceb6699</guid><dc:creator>Khoa Tran</dc:creator><pubDate>Sun, 12 May 2013 06:35:00 GMT</pubDate></item><item><title>A Day at Constant Contact</title><description>&lt;p&gt;On Friday, March 29, I had the wonderful opportunity to participate in an externship program and shadow the engineers at &lt;a href='http://www.constantcontact.com/index.jsp' &gt;Constant Contact&lt;/a&gt; (CtCt). I spent a couple of hours the night before doing "research" (reading about their products, googling my mentor, etc.), and I was very impressed with what they do. "But how did they do it? What technology did they use?" were some of my questions at the time. And I had the chance to get all my questions answered the very next day...&lt;/p&gt;
+
+&lt;h3 id="morningnoon"&gt;Morning + Noon&lt;/h3&gt;
+
+&lt;p&gt;I arrived at the office just barely on time (pulled out my cell phone, 9:57 am :o). Upon ringing the bell, and entering, I was greeted by a fairly tall man. We exchanged a bit of information, then I awkwardly asserted:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;'You must be Mike?' &lt;br /&gt;
+  'No, I'm Peter. Mike's not here yet.'&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I wanted to hide somewhere. Anyway, he showed me around a bit, then introduced me to another man. David was his name (David also turned out to be one of the two people that I spent the most time with - along with Mike). We went into a small meeting room where everyone gathered around in a circle and told their colleagues what he/she had been doing for the past couple of days, as well as what they were working now. (I think it was freaking cool because you got the chance to check out what your colleage had been working on, their progress, and see if they needed any help. I've yet seen anything like that in any company!).      &lt;/p&gt;
+
+&lt;p&gt;After that, David showed me around and introduced me to everyone! I got the chance to ask questions and learn what everyone was working on. He then introduced me to Mike, and after that I spent the rest of my morning observing Mike's work. He was deploying his work to D1 (their local's server, afaik). Mike built a robot that would always say "Deploying to..." everytime a person deploy something, which was totally cool and mind-blowing. Not only that, the robot that he built could also increase/decrease the music's volume with some simple instructions. I spent the majority of my morning asking Mike questions about his work, the Ruby on Rails project he's working on, and using backbone.js to provide richer client-side's experience.    &lt;/p&gt;
+
+&lt;p&gt;During lunchs, employees would usually do a couple of demos showing their work to their colleagues and getting feedback. Which was totally cool because everyone got to see cool demos while also enjoying the awesome food! Today, two of the employees were demo-ing Facebook integration with their Social Campaign app, and Dropbox integration, respectively. I had to admit that these blew my mind, both the awesomeness of the demo and the fact that I could barely follow them and the technologies they were using, haha.   &lt;/p&gt;
+
+&lt;h3 id="afternoon"&gt;Afternoon&lt;/h3&gt;
+
+&lt;p&gt;After lunch, Mike and David showed me one of the company's conference room, where there was a TV that connected live to their Boston office (there's also another one outside!) so that they could chat and exchange ideas directly between multiple people. While waiting for a member of the Boston's team, I got the chance to ask them a ton of questions. I told them a little bit about my background, the classes I had taken/was taking, and any experience I had in the field. I also asked them interview's tip for internships and jobs, and their interview &amp;amp; working experience at CtCt. The advice that they gave were absolutely terrific to me, as a junior, rising senior about to leave college for the real world :) &lt;/p&gt;
+
+&lt;p&gt;We finally met with a person from the Boston team. He was very friendly and down-to-earth funny (I remember he talked something about eating five cheeseburgers last night while massaging his stomach, lol). &lt;em&gt;Sidenote&lt;/em&gt;: I think software engineering is one of those fields that you got the chance to work with super, duper talented, but down-to-earth funny people like that. You don't often see bankers, accountants, or even doctors do those sort of things, haha.    &lt;/p&gt;
+
+&lt;p&gt;I was then introduced to Jason, Mike's roommate and colleague, and we exchanged a bit of our background's info. Jason was actually the first person to deliver his demo on Facebook and CtCt's Social Campaign app. He was also a down-to-earth person, and he showed me his sticker's collection (It was during then that I found out there's still someone, beside me, enjoyed playing the good 'ol Megaman game series!) I spent the next hour watching Jason's work, while bugging him with a bunch of questions xD. I told him that I would be working with Ruby on Rails during one of my senior year's class, and upon hearing that, he introduced me to a couple of great books on the topic. I took a look at his code, and asked him how he usually tested them before committing them on Github, and he introduced me to Rspec, a Ruby gem that acted as a testing framework. He gave me a demonstration on how to test code in the real world, and it's totally cool (&lt;em&gt;Sidenote&lt;/em&gt;: I think we all agree that code testing are taught and executed horribly in school, especially in gigantic classes like at Berkeley. I know tons of people just do the project, submit it to the evil autograder, without even bother manually test the code they wrote...).   &lt;/p&gt;
+
+&lt;p&gt;I then asked Jason, and David, who was sitting two chairs away, about coding practice in the real world. How they usually dealt with buggy code, how often to commit or push to Github, how to deal with teammates that have different coding style, etc. I then moved on to the final part of my externship, to observe David as he handled pull request and showed me his backend work in Java.   &lt;/p&gt;
+
+&lt;h3 id="concludingmyexternship"&gt;Concluding my Externship&lt;/h3&gt;
+
+&lt;p&gt;David first showed me the steps to handle pull requests on Github. More than often, Git will not be able to replace the changes automatically, and it's up to us humans to handle the merge conflicts. He also showed me how to effectively used all the powerful tools that Git gave us - branch, stash, rebase, reset, etc. Most of the time in schools, we never need to know, or take advantage of, the full power of git. Knowing how to add the files into the staged area, commit and push 'em are often good enough for any school projects, but it's not exactly the same way in the real world, perhaps different people may have different ideas and want to develop on different branches, for example. He then showed me the bulk of his work in Java on Eclipse, a program that was used to validate user's input before injecting their info into the system's database. The abstraction was hidden away at the UI/UX-level, but when you broke it down to smaller pieces, you actually saw some very friendly Java code just like those that are taught in school, or out of a textbook.   &lt;/p&gt;
+
+&lt;p&gt;I concluded my externship by asking David and Mike a couple more questions. "In your opinion, what's the most important skill or attribute as a software engineer?" "What is the most enjoyable aspect of your work?" 'Desire to learn' came up in the answers to both questions, because you got the chance to work with talented people and improved everyday, and never became intimidated by other people. &lt;em&gt;Nobody knew everything, and 'before you know it, you may be the one that helps those computer-whiz that has been programming since 10'&lt;/em&gt; was one of the advice that David gave me.     &lt;/p&gt;
+
+&lt;p&gt;Overall, it was a very enjoyable experience, and I had nothing but positive things to say about my externship, as well as CtCt. It gave me a much different view about software engineering and how's it done in the real world. &lt;em&gt;Computer science is taught in school as a 'science' (which really, really helps with the way you approach and think about a problem), but there are many lacking aspects of software engineering that can only be gained via internship or externship like this.&lt;/em&gt; I believe the experience I gained in my short, one-day, externship will be crucial for any internship or job that I have in the future. In the end, I'm very happy to pursue this career, and I can't say how proud I am to make this decision. Maybe I will change my mind five, ten years from now, but I can totally see myself doing this a couple of years from now as a newly-grad from Berkeley.&lt;/p&gt;</description><link>http://127.0.0.1:2368/a-day-at-constant-contact/</link><guid isPermaLink="false">d5c5a8fe-07a1-4fd9-b091-ff56ddc4768d</guid><dc:creator>Khoa Tran</dc:creator><pubDate>Tue, 02 Apr 2013 22:21:00 GMT</pubDate></item><item><title>Hello, World!</title><description>&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; print("Hello, World!")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Hello, World!&lt;/strong&gt; &lt;/p&gt;
+
+&lt;p&gt;I finally got motivated to build my own website! This page was last edited on Mar 29, 2014, when I moved to using &lt;a href='https://ghost.org/' &gt;Ghost&lt;/a&gt;, so hello world, &lt;strong&gt;again&lt;/strong&gt;!&lt;/p&gt;</description><link>http://127.0.0.1:2368/hello-world/</link><guid isPermaLink="false">360b746e-7d25-46ed-b6c0-92bb9c7a4a10</guid><category>Getting Started</category><dc:creator>Khoa Tran</dc:creator><pubDate>Mon, 25 Mar 2013 21:35:00 GMT</pubDate></item></channel></rss>

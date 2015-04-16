@@ -1,15 +1,15 @@
-<html>
+
 <head>
 <title>CS 61B: Final Exam</title>
 </head>
-<body bgcolor='ffffff'>
+<body bgcolor="ffffff">
 
-<font size=6 color='009000'>
+<font size="6" color="009000">
 <a href="http://www.cs.berkeley.edu/~jrs/61b/">
 CS 61B:  Data Structures</a></font>
-<font color='009000'>(Autumn 2006)</font><br>
+<font color="009000">(Autumn 2006)</font><br>
 <font size="6" color="#009000">Final Exam</font><br>
-<h3><font size=5 color='red'>UNOFFICIAL</font> Solutions</h3><br>
+<h3><font size="5" color="red">UNOFFICIAL</font> Solutions</h3><br>
 
 <b>Problem 1.</b>  (9 points) <b>A Miscellany.</b><br><br>
 
@@ -45,7 +45,7 @@ In the meantime, here's a few steps during those 11 insertions.
 <pre>
   3 4 5        4            4 6            4 6           2 4 6
           7   / \     9    / | \     2    / | \     0   / | | \
-         ->  3  567  ->   3  5 789  ->  123 5 789  ->  01 3 5 789</pre>
+         -&gt;  3  567  -&gt;   3  5 789  -&gt;  123 5 789  -&gt;  01 3 5 789</pre>
 <br>
 Inserting 10 would then break the node <i>246</i> and <i>789</i>
 <br><br>
@@ -81,18 +81,12 @@ Postorder: G H D K L I E B J F C A  </pre>
 
 <b>a. </b>
 <pre>
-a <- c <- e <- f
-  ^
-   \
-     g <- b
-       ^
-        \
-          d</pre>
+a 
 Visited order, starting from <i>a</i>, is: <i>a c g e b d f</i>.
 <br><br>
 
 <b>b. </b>
-For each vertex <tt>u</tt>, we need to find an edge incident on it by checking every other vertex <tt>w</tt> such that <tt>(u, w)</tt> (if <tt>u</tt> <= <tt>w</tt>), or <tt>(w, u)</tt> is in the hash table, and that we haven't visited <tt>w</tt> previously. Doing so, in the worst case, would take <tt>O(|V|<sup>2</sup></tt>), which is much worse than the normal <tt>O(|V|+|E|)</tt> for DFS.  
+For each vertex <tt>u</tt>, we need to find an edge incident on it by checking every other vertex <tt>w</tt> such that <tt>(u, w)</tt> (if <tt>u</tt> w), or <tt>(w, u)</tt> is in the hash table, and that we haven't visited <tt>w</tt> previously. Doing so, in the worst case, would take <tt>O(|V|<sup>2</sup></tt>), which is much worse than the normal <tt>O(|V|+|E|)</tt> for DFS.  
 <br><br>
 
 <b>c. </b>
@@ -102,7 +96,7 @@ Let's say you have <tt>N</tt> buckets, and <tt>n = N-1</tt> items. The load fact
 <b>d. </b>
 I believe this is similar to the derivation of randomized quicksort's running time in Lecture 38. We have a 1/2 chance of finding a good index, which we can then drop 1/4 of the items in the sorted array. Let <i>D</i>(<i>n</i>) be a random variable equal to the depth of an arbitrary key in a random <i>n</i>-index, <i>retarded binary search</i>. By the same derivation in Lecture 38,
 <blockquote>
-E[<i>D</i>(<i>n</i>)] &le; 2 log<sub>4/3</sub> <i>n</i>.
+E[<i>D</i>(<i>n</i>)] ≤ 2 log<sub>4/3</sub> <i>n</i>.
 </blockquote> 
 <br>
 
@@ -110,10 +104,10 @@ E[<i>D</i>(<i>n</i>)] &le; 2 log<sub>4/3</sub> <i>n</i>.
 
 <b>a. </b>
 When the number of elements is odd, return<br>
-<ul>
-  <li>min key of min heap if size(min heap) > size(max heap)</li>
-  <li>max key of max heap if size(min heap) < size(max heap)</li>
-</ul>
+</pre><ul>
+  <li>min key of min heap if size(min heap) &gt; size(max heap)</li>
+  <li>max key of max heap if size(min heap) 
+</li></ul>
 If the number of elements is even, return the max key of max heap, since every key of max heap is less than or equal to every key of min heap.
 <br><br>
 
@@ -121,7 +115,7 @@ If the number of elements is even, return the max key of max heap, since every k
 <ul>
   <li>If the inserted key is bigger than or equal to the root of the min heap, insert it into the min heap.</li>
   <li>Else if the inserted key is smaller than or equal to the root of the max heap, insert it into the max heap.</li>
-  <li>Otherwise (<tt>max(maxHeap) < key < min(minHeap)</tt>), choose either heap arbitrarily and insert it into that heap.</li>
+  <li>Otherwise (<tt>max(maxHeap) ), choose either heap arbitrarily and insert it into that heap.</tt></li>
 </ul>
 <br>
 
@@ -153,39 +147,10 @@ public class BinaryTreeNode {
 
   // Inserts key k into "this" node's subtree; updates all sizes and heights.
   <b>public void insert(int k) {
-    if (k < key) {
-      if (left != null) {
-        left.insert(k);
-      } else {
-        left = new BinaryTreeNode(k, this);
-      }
-    } else {
-      if (right != null) {
-        right.insert(k);
-      } else {
-        right = new BinaryTreeNode(k, this);
-      }
-    }
-    height = max(height(left), height(right)) + 1; 
-    size++;
-  }
-
-  // Compute the node's height, null is treated as -1
-  public int height(BinaryTreeNode node) {
-    if (node == null) {
-      return -1;
-    } else {
-      return node.height;
-    }
-  }
-
-  // Return the max between two numbers
-  public int max(int a, int b) {
-    return a >= b ? a:b;
+    if (k = b ? a:b;
   }</b>
 }
 </tt></pre>
 
 <hr>
 </body>
-</html>
